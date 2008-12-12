@@ -4,7 +4,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 public class SelenifyParser {
 
-    private static final String defaultValueCommands = "assertTextPresent,assertTextNotPresent,verifyTextPresent,verifyTextNotPresent";
+    private static final String defaultValueCommands = "";
     private static final String customValueCommands = System.getProperty("selenium.value.commands", "");
 
     /** @return a String[] of command, arg1, arg2 */
