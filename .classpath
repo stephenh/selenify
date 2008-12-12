@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main"/>
+	<classpathentry kind="src" path="tests/unit"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/main/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/main/commons-lang-2.3.jar" sourcepath="lib/main/commons-lang-2.3.zip"/>
+	<classpathentry kind="lib" path="lib/tests/junit-3.8.2.jar" sourcepath="lib/tests/junit-3.8.2.zip"/>
+	<classpathentry kind="output" path="bin/eclipse"/>
+</classpath>

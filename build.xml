@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<project name="selenify" default="jar" basedir=".">
+
+	<target name="clean">
+		<delete dir="bin"/>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="bin/main"/>
+		<javac srcdir="src/main" destdir="bin/main" debug="true" nowarn="yes" source="1.5" target="1.5" encoding="utf8">
+			<classpath>
+				<fileset dir="lib/main" includes="**/*.jar"/>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar destfile="bin/selenify.jar">
+			<fileset dir="bin/main" includes="**/*.class"/>
+		</jar>
+		<zip destfile="bin/selenify.zip">
+			<fileset dir="src/main" includes="**/*.java"/>
+		</zip>
+	</target>
+
+</project>
+
