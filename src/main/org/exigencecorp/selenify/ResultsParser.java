@@ -36,9 +36,25 @@ public class ResultsParser {
 
     private void appendStats(StringBuilder sb, String webappName, Map<String, String[]> parameters) {
         sb.append("  " + this.createTag("name", webappName));
-        sb.append("  " + this.createTag("result", parameters.get("result")[0]));
-        sb.append("  " + this.createTag("passes", parameters.get("numTestPasses")[0]));
-        sb.append("  " + this.createTag("failures", parameters.get("numTestFailures")[0]));
+
+        int passes = 0, failures = 0, ignores = 0;
+        for (int i = 1; parameters.get("testTable." + i) != null; i++) {
+            boolean testFailed = parameters.get("testTable." + i)[0].contains("status_failed");
+            boolean isIgnored = parameters.get("testTable." + i)[0].contains(".ignore");
+            if (isIgnored) {
+                ignores++;
+            } else if (testFailed) {
+                failures++;
+            } else {
+                passes++;
+            }
+        }
+
+        String result = (failures == 0) ? "passed" : "failed";
+        sb.append("  " + this.createTag("result", result));
+        sb.append("  " + this.createTag("passes", String.valueOf(passes)));
+        sb.append("  " + this.createTag("failures", String.valueOf(failures)));
+        sb.append("  " + this.createTag("ignores", String.valueOf(ignores)));
         sb.append("  " + this.createTag("time", parameters.get("totalTime")[0]));
     }
 
