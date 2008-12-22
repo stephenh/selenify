@@ -74,7 +74,7 @@ public class SelenifyParserTest extends TestCase {
         parameters.put("numTestPasses", new String[] { "1" });
         parameters.put("numTestFailures", new String[] { "2" }); // we ignore this and derive it
         parameters.put("totalTime", new String[] { "3" });
-        parameters.put("testTable.1", new String[] { "<b>test.ignore/123-name</b>" });
+        parameters.put("testTable.1", new String[] { "<b>test.ignore/123-name.ignore</b>" });
 
         String out = p.toXml("name", parameters);
         Assert.assertEquals(StringUtils.join(new String[] {//
@@ -87,7 +87,7 @@ public class SelenifyParserTest extends TestCase {
                 "  <time>3</time>",//
                 "  <tests>",//
                 "    <test>",//
-                "      <name>test.ignore/123-name</name>",//
+                "      <name>test.ignore/123-name.ignore</name>",//
                 "      <commands>",//
                 "      </commands>",//
                 "    </test>",//

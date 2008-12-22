@@ -156,7 +156,7 @@ public class SelenifyServlet implements Servlet {
     }
 
     public String generateTest(String fileName, String group) throws ServletException, IOException {
-        String testName = group + "/" + fileName.substring(0, fileName.indexOf("."));
+        String testName = group + "/" + fileName.substring(0, fileName.lastIndexOf("."));
         StringBuffer sb = new StringBuffer();
         this.addHeader(sb);
 
