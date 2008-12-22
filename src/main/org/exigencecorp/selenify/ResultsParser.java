@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 public class ResultsParser {
 
     private final Pattern rowPattern = Pattern.compile("(?s)<tr.*?</tr>", Pattern.CASE_INSENSITIVE);
-    private final Pattern testCasePattern = Pattern.compile("(?s)<b>([\\w-_]+/?[\\w-_]+)</b>", Pattern.CASE_INSENSITIVE);
+    private final Pattern testCasePattern = Pattern.compile("(?s)<b>([\\w-_\\.]+/?[\\w-_\\.]+)</b>", Pattern.CASE_INSENSITIVE);
     private final Pattern statusPattern = Pattern.compile("class=\"?(#?\\w+)\"?", Pattern.CASE_INSENSITIVE);
     private final Pattern commandArgsPattern = Pattern.compile("(?s)<td.*?>(.*?)</td>", Pattern.CASE_INSENSITIVE);
     private final Pattern originalHtmlPattern = Pattern.compile("originalhtml=\"(.*?)\"", Pattern.CASE_INSENSITIVE);
