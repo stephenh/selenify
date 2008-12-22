@@ -116,7 +116,7 @@ public class SelenifyServlet implements Servlet {
         });
         for (File file : files) {
             if (file.isDirectory()) {
-                this.generateTestSuite(file.getName(), sb, true);
+                this.generateTestSuite(file.getName(), sb);
             }
         }
 
@@ -128,12 +128,12 @@ public class SelenifyServlet implements Servlet {
         StringBuffer sb = new StringBuffer();
         this.addHeader(sb);
         sb.append("<tr><td><b>").append(suiteName).append(" Suite</b></td></tr>\n");
-        this.generateTestSuite(suiteName, sb, false);
+        this.generateTestSuite(suiteName, sb);
         this.addFooter(sb);
         return sb.toString();
     }
 
-    public void generateTestSuite(String suiteName, StringBuffer sb, boolean suppressIgnoredTests) {
+    public void generateTestSuite(String suiteName, StringBuffer sb) {
         File suiteDirectory = new File(this.getRootPath() + "/" + suiteName);
         if (!suiteDirectory.exists()) {
             throw new RuntimeException("The suite directory does not exist: " + suiteDirectory);
@@ -148,7 +148,7 @@ public class SelenifyServlet implements Servlet {
             String testName = file.getName();
             // Protect against display silly things like '.' - wtf are they
             // returned from listFiles is beyond me
-            if (this.skipFile(testName) || (suppressIgnoredTests && testName.indexOf(".ignore.") > -1)) {
+            if (this.skipFile(testName)) {
                 continue;
             }
             this.addTest(testName, suiteName, sb);
