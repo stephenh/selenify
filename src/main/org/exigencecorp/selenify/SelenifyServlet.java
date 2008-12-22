@@ -210,7 +210,7 @@ public class SelenifyServlet implements Servlet {
         if (fileName.indexOf(".txt") == -1) {
             return;
         }
-        String testName = fileName.substring(0, fileName.indexOf("."));
+        String testName = fileName.substring(0, fileName.lastIndexOf("."));
         sb.append("<tr><td><a target=\"testFrame\" href=\"");
         sb.append(suiteName);
         sb.append("/");
