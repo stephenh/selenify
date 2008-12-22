@@ -22,22 +22,24 @@ public class ResultsParser {
 
         StringBuilder sb = new StringBuilder();
         sb.append("<webapp>\n");
+        this.appendStats(sb, webappName, parameters);
+        sb.append("  <tests>\n");
+        for (int i = 1; parameters.get("testTable." + i) != null; i++) {
+            String table = parameters.get("testTable." + i)[0];
+            this.appendTest(sb, table);
+        }
+        sb.append("  </tests>\n");
+        sb.append("</webapp>\n");
+
+        return sb.toString();
+    }
+
+    private void appendStats(StringBuilder sb, String webappName, Map<String, String[]> parameters) {
         sb.append("  " + this.createTag("name", webappName));
         sb.append("  " + this.createTag("result", parameters.get("result")[0]));
         sb.append("  " + this.createTag("passes", parameters.get("numTestPasses")[0]));
         sb.append("  " + this.createTag("failures", parameters.get("numTestFailures")[0]));
         sb.append("  " + this.createTag("time", parameters.get("totalTime")[0]));
-        sb.append("  <tests>\n");
-
-        for (int i = 1; parameters.get("testTable." + i) != null; i++) {
-            String table = parameters.get("testTable." + i)[0];
-            this.appendTest(sb, table);
-        }
-
-        sb.append("  </tests>\n");
-        sb.append("</webapp>\n");
-
-        return sb.toString();
     }
 
     private void appendTest(StringBuilder sb, String table) {
