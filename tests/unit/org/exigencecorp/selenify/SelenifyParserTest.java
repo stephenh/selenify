@@ -10,7 +10,7 @@ public class SelenifyParserTest extends TestCase {
     }
 
     public void testCommandWithOnlyValue() {
-        this.assertParsed("assertTextNotPresent bob", "assertTextNotPresent", "", "bob");
+        this.assertParsed("assertTextNotPresent bob", "assertTextNotPresent", "bob", "");
     }
 
     public void testCommandBothArgsWithSpace() {
